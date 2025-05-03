@@ -1,9 +1,12 @@
 import React from 'react';
+import EmptyState from '../../Components/EmptyState/EmptyState';
+import { Helmet } from 'react-helmet-async';
+
 
 const About = () => {
     return (
         <div>
-            <h1>this is about</h1>
+            <EmptyState></EmptyState>
         </div>
     );
 };

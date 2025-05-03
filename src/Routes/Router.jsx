@@ -3,6 +3,9 @@ import Root from "../Layout/Root";
 import About from "../Pages/About/About";
 import Home from "../Pages/Home/Home";
 import News from "../Components/News/News";
+import Auth from "../Layout/Auth";
+import Login from "../Pages/Login/Login";
+import Register from "../Pages/Register/Register";
 
 export const router = createBrowserRouter([
   {
@@ -32,4 +35,18 @@ export const router = createBrowserRouter([
       },
     ],
   },
+  {
+    path:"/auth",
+    Component:Auth,
+    children:[
+      {
+        path:"/auth/login",
+        Component: Login
+      },
+      {
+        path:"/auth/register",
+        Component: Register
+      }
+    ]
+  }
 ]);

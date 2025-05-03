@@ -3,18 +3,10 @@ import { FaStar, FaEye, FaShareAlt, FaRegBookmark } from "react-icons/fa";
 import { format } from "date-fns";
 
 const NewsCard = ({ news }) => {
-  const {
-    title,
-    author,
-    image_url,
-    details,
-    rating,
-    total_view,
-    tags,
-  } = news;
+  const { title, author, image_url, details, rating, total_view, tags } = news;
 
   return (
-    <div className="card w-full bg-base-100 border border-gray-200 rounded-xl shadow-sm max-w-md mx-auto">
+    <div className="card w-full bg-base-100 border border-gray-200 rounded-xl shadow-sm max-w-2xl mx-auto">
       {/* Header */}
       <div className="flex justify-between items-center p-4 bg-base-200 rounded-xl">
         <div className="flex items-center gap-3">
@@ -37,24 +29,38 @@ const NewsCard = ({ news }) => {
       </div>
 
       {/* Title */}
-      <div className="px-4 font-bold text-base leading-tight mt-3 mb-2">{title}</div>
+      <div className="px-4 font-bold text-base leading-tight mt-4 mb-2">
+        {title}
+      </div>
 
       {/* Image */}
       <figure className="px-4 mt-5">
-        <img src={image_url} alt="News" className="w-full h-52 object-cover rounded-2xl" />
+        <img
+          src={image_url}
+          alt="News"
+          className="w-full h-66 object-cover rounded-2xl"
+        />
       </figure>
 
       {/* Content */}
       <div className="p-4 text-sm text-gray-700 mt-8">
         <p className="mb-2">
           {format(new Date(author.published_date), "EEEE, MMMM d, yyyy")} |
-          <span className="ml-1">
-            Tag Cloud Tags: {tags?.join(", ")}
-          </span>
+          <span className="ml-1">Tag Cloud Tags: {tags?.join(", ")}</span>
         </p>
+        {/* details */}
         <p>
-          {details.slice(0, 170)}...
-          <span className="text-red-500 font-semibold cursor-pointer"> Read More</span>
+          {details.length > 200 ? (
+            <>
+              {details.slice(0, 170)}...
+              <span className="text-orange-500 font-semibold cursor-pointer">
+                {" "}
+                Read More
+              </span>
+            </>
+          ) : (
+            details
+          )}
         </p>
       </div>
 

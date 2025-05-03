@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from "react";
 import { useLoaderData, useParams } from "react-router";
 import NewsCard from "../NewsCard/NewsCard";
+import EmptyState from "../EmptyState/EmptyState";
+import { Helmet } from "react-helmet-async";
 
 const News = () => {
   const { id } = useParams();
@@ -19,9 +21,13 @@ const News = () => {
     setNewNewses(newses);
   }, [id, data]);
 
+  if(newNewses.length<1) return<EmptyState></EmptyState>
   return (
-    <div>
-      <p>news-{newNewses.length}</p>
+    <div className="h-[1725px] overflow-y-auto">
+      <Helmet>
+        Home
+      </Helmet>
+      <p className="text-xl font-semibold ml-6 mb-3">Dragon News</p>
 
       <div className="grid grid-cols-1 gap-5">
         {

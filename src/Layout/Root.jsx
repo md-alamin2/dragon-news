@@ -16,7 +16,7 @@ const Root = () => {
             <Navbar></Navbar>
         </nav>
       </header>
-      <main className="w-11/12 lg:container mx-auto grid grid-cols-10 gap-6">
+      <main className="w-11/12 lg:container mx-auto grid grid-cols-10 mb-5">
         <aside className="col-span-2">
             <LeftAside></LeftAside>
         </aside>
