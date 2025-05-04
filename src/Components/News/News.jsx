@@ -1,10 +1,11 @@
-import React, { useEffect, useState } from "react";
+import React, { use, useEffect, useState } from "react";
 import { useLoaderData, useParams } from "react-router";
 import NewsCard from "../NewsCard/NewsCard";
 import EmptyState from "../EmptyState/EmptyState";
-import { Helmet } from "react-helmet-async";
+import { AuthContext } from "../../Provider/AuthContext";
 
 const News = () => {
+  const { setTitles} =use(AuthContext)
   const { id } = useParams();
   const data = useLoaderData();
 
@@ -19,14 +20,13 @@ const News = () => {
     }
     const newses = data.filter((news) => news.category_id == id);
     setNewNewses(newses);
-  }, [id, data]);
+    const newsesTitle = data.filter(news=>news.category_id == id).map(items=>items.title)
+    setTitles(newsesTitle)
+  }, [id, data, setTitles]);
 
   if(newNewses.length<1) return<EmptyState></EmptyState>
   return (
     <div className="h-[1725px] overflow-y-auto">
-      <Helmet>
-        Home
-      </Helmet>
       <p className="text-xl font-semibold ml-6 mb-3">Dragon News</p>
 
       <div className="grid grid-cols-1 gap-5">

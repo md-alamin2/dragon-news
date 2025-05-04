@@ -4,7 +4,9 @@ import { format } from "date-fns";
 import { Link } from "react-router";
 
 const NewsCard = ({ news }) => {
+ 
   const {id, title, author, image_url, details, rating, total_view, tags } = news;
+  
 
   return (
     <div className="card w-full bg-base-100 border border-gray-200 rounded-xl shadow-sm max-w-2xl mx-auto">

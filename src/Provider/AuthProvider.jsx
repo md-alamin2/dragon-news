@@ -5,7 +5,8 @@ import { auth } from "../Firebase/Firebase.config";
 
 const AuthProvider = ({ children }) => {
     const [user, setUser]= useState(null);
-    const [loading, setLoading] = useState(true)
+    const [loading, setLoading] = useState(true);
+    const [titles, setTitles] =useState([]);
 
     // register user
     const createUser = (email, password)=>{
@@ -46,6 +47,8 @@ const AuthProvider = ({ children }) => {
         user,
         setUser,
         loading,
+        titles,
+        setTitles,
         createUser,
         updateUser,
         loginUser,
