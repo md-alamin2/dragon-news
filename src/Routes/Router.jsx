@@ -6,6 +6,9 @@ import News from "../Components/News/News";
 import Auth from "../Layout/Auth";
 import Login from "../Pages/Login/Login";
 import Register from "../Pages/Register/Register";
+import NewsDetails from "../Pages/NewsDetails/NewsDetails";
+import PrivateRoute from "../Components/PrivateRoute/PrivateRoute";
+import Loading from "../Components/Loading/Loading";
 
 export const router = createBrowserRouter([
   {
@@ -20,14 +23,7 @@ export const router = createBrowserRouter([
         path: "/news/:id",
         Component: News,
         loader: () => fetch("/news.json"),
-        hydrateFallbackElement: (
-          <div className="flex w-full flex-col gap-4">
-            <div className="skeleton h-32 w-full"></div>
-            <div className="skeleton h-4 w-28"></div>
-            <div className="skeleton h-4 w-full"></div>
-            <div className="skeleton h-4 w-full"></div>
-          </div>
-        ),
+        hydrateFallbackElement: <Loading/>,
       },
       {
         path: "/about",
@@ -36,17 +32,27 @@ export const router = createBrowserRouter([
     ],
   },
   {
-    path:"/auth",
-    Component:Auth,
-    children:[
+    path: "/auth",
+    Component: Auth,
+    children: [
       {
-        path:"/auth/login",
-        Component: Login
+        path: "/auth/login",
+        Component: Login,
       },
       {
-        path:"/auth/register",
-        Component: Register
-      }
-    ]
-  }
+        path: "/auth/register",
+        Component: Register,
+      },
+    ],
+  },
+  {
+    path: "/news-details/:id",
+    element: (
+      <PrivateRoute>
+        <NewsDetails></NewsDetails>
+      </PrivateRoute>
+    ),
+    loader: () => fetch("/news.json"),
+    hydrateFallbackElement: <Loading/>,
+  },
 ]);
