@@ -1,28 +1,44 @@
-import React, { use, useState } from "react";
+import React, { use, useRef, useState } from "react";
 import { Link, useLocation, useNavigate } from "react-router";
 import { AuthContext } from "../../Provider/AuthContext";
 
 const Login = () => {
-  const [error, setError] = useState("")
-  const { loginUser, setUser } = use(AuthContext);
+  const [error, setError] = useState("");
+  const { loginUser, setUser, passwordReset } = use(AuthContext);
   const location = useLocation();
   const navigate = useNavigate();
+  const emailRef = useRef();
 
   const handleLogin = (e) => {
     e.preventDefault();
     const email = e.target.email.value;
     const password = e.target.password.value;
 
+    setError("");
     // login user
     loginUser(email, password)
       .then((result) => {
         const user = result.user;
         setUser(user);
-        navigate(`${location.state ? location.state : "/"}`)
+        navigate(`${location.state ? location.state : "/"}`);
       })
       .catch((error) => {
         const errorMessage = error.code;
-        setError(errorMessage)
+        setError(errorMessage);
+      });
+  };
+
+  // password reset
+  const handlePasswordReset = () => {
+    const email = emailRef.current.value;
+    setError("");
+    passwordReset(email)
+      .then(() => {
+        alert("Send a password reset email, check your email");
+      })
+      .catch((error) => {
+        const errorMessage = error.code;
+        setError(errorMessage);
       });
   };
   return (
@@ -43,6 +59,7 @@ const Login = () => {
                 <input
                   type="email"
                   name="email"
+                  ref={emailRef}
                   className="input w-full py-5 bg-base-300"
                   placeholder="Email"
                   required
@@ -58,10 +75,14 @@ const Login = () => {
                   placeholder="Password"
                   required
                 />
-                {error && <p className="text-red-500 text-sm">{error}</p>}
+
                 <div>
-                  <a className="link link-hover">Forgot password?</a>
+                  <a onClick={handlePasswordReset} className="link link-hover">
+                    Forgot password?
+                  </a>
                 </div>
+
+                {error && <p className="text-red-500 text-sm">{error}</p>}
                 <button type="submit" className="btn btn-primary mt-4">
                   Login
                 </button>
