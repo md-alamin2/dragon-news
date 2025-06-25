@@ -38,6 +38,7 @@ Dragoon News is a responsive front-end web application build with react that del
 
 ### 🎨 Styling
 - `tailwindcss` (^4.1.5) — Utility-first CSS framework for modern UIs.
+- `daisyui` (^5.0.27) — A set of pre-styled Tailwind CSS UI components.
 
 ---
 
