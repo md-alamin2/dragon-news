@@ -1,12 +1,22 @@
-# React + Vite
+# <img src="assets/logo.png">
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+## Layouts & Design
 
-Currently, two official plugins are available:
+There will be three layour for the project. watch below designs to understand layout structure/
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+### News Layout
 
-## Expanding the ESLint configuration
+ <img src="https://i.ibb.co.com/sJFwsTBZ/home-layout.png"/>
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+### News-Details Layout
+
+ <img src="https://i.ibb.co.com/4ZJ3wBfq/news-details-layout.png"/>
+
+### Auth Layout
+
+<table>
+ <tr>
+   <td> <img  src="https://i.ibb.co.com/BVtvwgbN/auth-layout-login.png"/></td>
+   <td> <img src="https://i.ibb.co.com/27Rmt7C5/auth-layout-register.png"/></td>
+ </tr> 
+</table>
